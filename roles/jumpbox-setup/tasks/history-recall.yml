@@ -1,0 +1,11 @@
+---
+- name: Create .inputrc File
+  copy:
+    dest: "/home/{{ jumpbox_user }}/.inputrc"
+    owner: "{{ jumpbox_user }}"
+    group: "{{ jumpbox_group }}"
+    mode: 0644
+    content: |
+      "\e[A": history-search-backward
+      "\e[B": history-search-forward
+...

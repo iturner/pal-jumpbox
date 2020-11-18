@@ -1,0 +1,23 @@
+---
+- name: Setup Jumpbox
+  hosts: jumpbox
+  become: yes
+  vars:
+    bosh_version: "6.4.1"
+    credhub_version: "2.8.0"
+    direnv_release: "v2.24.0"
+    docker_ce_repo: "docker-ce.repo"
+    docker_compose_version: "1.27.4"
+    fly_version: "6.7.1"  #"5.5.10"
+    jq_release: "jq-1.6"
+    om_version: "7.0.0"
+    pivnet_version: "2.0.2"
+    terraform_version: "0.13.5"
+    yq_release: "3.4.1"
+  roles:
+    - jumpbox-setup
+
+#  post_tasks:
+#    - name: Reboot Server
+#      reboot:
+...

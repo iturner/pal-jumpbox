@@ -1,0 +1,9 @@
+---
+- name: Create workspace Folder
+  file:
+    dest: "/home/{{ jumpbox_user }}/workspace"
+    state: directory
+    owner: "{{ jumpbox_user }}"
+    group: "{{ jumpbox_group }}"
+    mode: 0755
+...

@@ -1,0 +1,16 @@
+---
+- name: Install direnv
+  get_url:
+    url: "https://github.com/direnv/direnv/releases/download/{{ direnv_release }}/direnv.linux-amd64"
+    dest: "/home/{{ jumpbox_user }}/bin/direnv"
+    owner: "{{ jumpbox_user }}"
+    group: "{{ jumpbox_group }}"
+    mode: 0755
+
+- name: Hook direnv Into Shell
+  lineinfile:
+    dest: "/home/{{ jumpbox_user }}/.bashrc"
+    state: present
+    line: 'eval "$(direnv hook {{ os_shell | default("bash") }})"'
+    insertafter: "EOF"
+...

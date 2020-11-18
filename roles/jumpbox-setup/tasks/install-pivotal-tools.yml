@@ -1,0 +1,19 @@
+---
+- name: Pivotal Tools - BOSH CLI
+  include_tasks: "pivotal-tools/install-bosh.yml"
+
+- name: Pivotal Tools - credhub
+  include_tasks: "pivotal-tools/install-credhub.yml"
+
+- name: Pivotal Tools - pivnet
+  include_tasks: "pivotal-tools/install-pivnet.yml"
+
+- name: Pivotal Tools - om
+  include_tasks: "pivotal-tools/install-om.yml"
+
+- name: Pivotal Tools - fly
+  include_tasks: "pivotal-tools/install-fly.yml"
+
+- name: Pivotal Tools - CloudFoundry UUA
+  include_tasks: "pivotal-tools/install-cf-uaa.yml"
+...

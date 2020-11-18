@@ -1,0 +1,16 @@
+---
+- name: Create bin Folder
+  file:
+    dest: '/home/{{ jumpbox_user }}/bin'
+    state: directory
+    owner: "{{ jumpbox_user }}"
+    group: "{{ jumpbox_group }}"
+    mode: 0755
+
+- name: Add bin Folder to PATH
+  lineinfile:
+    dest: "/home/{{ jumpbox_user }}/.bashrc"
+    state: present
+    line: 'export PATH=${HOME}/bin:$PATH'
+    insertafter: "# User specific aliases and functions"
+...

@@ -1,0 +1,9 @@
+---
+- name: Install pivnet
+  get_url:
+    url: "https://github.com/pivotal-cf/pivnet-cli/releases/download/v{{ pivnet_version }}/pivnet-linux-amd64-{{ pivnet_version }}"
+    dest: "/home/{{ jumpbox_user }}/bin/pivnet"
+    owner: "{{ jumpbox_user }}"
+    group: "{{ jumpbox_group }}"
+    mode: 0755
+...

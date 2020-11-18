@@ -1,0 +1,9 @@
+---
+- name: Install jq
+  get_url:
+    url: "https://github.com/stedolan/jq/releases/download/{{ jq_release }}/jq-linux64"
+    dest: "/home/{{ jumpbox_user }}/bin/jq"
+    owner: "{{ jumpbox_user }}"
+    group: "{{ jumpbox_group }}"
+    mode: 0755
+...

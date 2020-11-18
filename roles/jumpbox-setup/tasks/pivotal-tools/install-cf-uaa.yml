@@ -1,0 +1,9 @@
+---
+- name: Install CloudFoundry UUA Prerequisites
+  apt:
+    name: build-essential, ruby-dev
+    state: present
+
+- name: Install CloudFoundry UUA
+  shell: "gem install cf-uaac"
+...

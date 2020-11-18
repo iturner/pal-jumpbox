@@ -1,0 +1,4 @@
+---
+jumpbox_user: "ubuntu"
+jumpbox_group: "ubuntu"
+...

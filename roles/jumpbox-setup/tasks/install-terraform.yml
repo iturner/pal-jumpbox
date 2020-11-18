@@ -1,0 +1,38 @@
+---
+- name: Ensure Unzip Installed
+  apt:
+    name: unzip
+    state: present
+
+- name: Check Installed Terraform Version
+  shell: "/home/{{ jumpbox_user }}/bin/terraform --version"
+  changed_when: false
+  failed_when: false
+  register: terraform_state
+
+- name: Install Terraform
+  block:
+    - name: Download Terraform
+      get_url:
+        url: "https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_amd64.zip"
+        dest: "/home/{{ jumpbox_user }}/bin/terraform.zip"
+        owner: "{{ jumpbox_user }}"
+        group: "{{ jumpbox_group }}"
+        mode: 0644
+
+    - name: Unzip Terraform
+      unarchive:
+        src: "/home/{{ jumpbox_user }}/bin/terraform.zip"
+        dest: "/home/{{ jumpbox_user }}/bin/"
+        owner: "{{ jumpbox_user }}"
+        group: "{{ jumpbox_group }}"
+        mode: 0755
+        remote_src: yes
+
+    - name: Remove Zip File
+      file:
+        dest: "/home/{{ jumpbox_user }}/bin/terraform.zip"
+        state: absent
+  when: terraform_state.stdout.find(terraform_version | string) == -1
+
+...

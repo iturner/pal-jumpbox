@@ -1,0 +1,32 @@
+---
+- name: Check Installed fly Version
+  shell: "/home/{{ jumpbox_user }}/bin/fly --version"
+  changed_when: false
+  failed_when: false
+  register: fly_state
+
+- name: Install fly
+  block:
+    - name: Download fly
+      get_url:
+        url: "https://github.com/concourse/concourse/releases/download/v{{ fly_version }}/fly-{{ fly_version }}-linux-amd64.tgz"
+        dest: "/home/{{ jumpbox_user }}/bin/fly.tgz"
+        owner: "{{ jumpbox_user }}"
+        group: "{{ jumpbox_group }}"
+        mode: 0644
+
+    - name: Untar fly
+      unarchive:
+        src: "/home/{{ jumpbox_user }}/bin/fly.tgz"
+        dest: "/home/{{ jumpbox_user }}/bin/"
+        owner: "{{ jumpbox_user }}"
+        group: "{{ jumpbox_group }}"
+        mode: 0755
+        remote_src: yes
+
+    - name: Remove Tar File
+      file:
+        dest: "/home/{{ jumpbox_user }}/bin/fly.tgz"
+        state: absent
+  when: fly_state.stdout.find(fly_version | string) == -1
+...

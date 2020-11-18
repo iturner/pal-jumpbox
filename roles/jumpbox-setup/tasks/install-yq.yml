@@ -1,0 +1,9 @@
+---
+- name: Install yq
+  get_url:
+    url: "https://github.com/mikefarah/yq/releases/download/{{ yq_release }}/yq_linux_amd64"
+    dest: "/home/{{ jumpbox_user }}/bin/yq"
+    owner: "{{ jumpbox_user }}"
+    group: "{{ jumpbox_group }}"
+    mode: 0755
+...

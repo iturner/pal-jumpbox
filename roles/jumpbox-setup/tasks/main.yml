@@ -1,0 +1,40 @@
+---
+- name: Install on Ubuntu Only
+  fail:
+    msg: "Use Ubuntu for jumpbox setup."
+  when: ansible_os_family == "Ubuntu"
+
+- name: Create .vimrc File
+  include_tasks: setup-vim.yml
+
+- name: Configure History Recall
+  include_tasks: history-recall.yml
+
+- name: Create bin Folder
+  include_tasks: bin-folder.yml
+
+- name: Create workspace Folder
+  include_tasks: workspace-folder.yml
+
+- name: Install direnv
+  include_tasks: install-direnv.yml
+
+- name: Install jq
+  include_tasks: install-jq.yml
+
+- name: Install yq
+  include_tasks: install-yq.yml
+
+- name: Install Terraform
+  include_tasks: install-terraform.yml
+
+- name: Install Docker Engine
+  include_tasks: install-docker-engine.yml
+
+- name: Install Docker Compose
+  include_tasks: install-docker-compose.yml
+
+- name: Install Pivotal Tools
+  include_tasks: install-pivotal-tools.yml
+...
+
