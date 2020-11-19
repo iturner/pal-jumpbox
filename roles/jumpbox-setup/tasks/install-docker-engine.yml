@@ -25,4 +25,16 @@
     name: docker-ce, docker-ce-cli, containerd.io
     state: latest
   ignore_errors: true
+
+- name: 'Adding the "{{ jumpbox_user }}" user to the docker group'
+  user:
+    name: "{{ jumpbox_user }}"
+    groups: "docker"
+    append: "yes"
+
+- name: Starting the Docker daemon
+  service:
+    name: "docker"
+    state: "started"
+    enabled: "yes"
 ...
