@@ -10,21 +10,23 @@
     state: present
 
 - name: Add Docker GPG Key
-  shell: "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - warn=no"
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
 
 - name: Setup Docker Repository
-  shell: 'echo | add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"'
+  shell:
+    cmd: 'echo | add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"'
+    creates: "/etc/apt/sources.list.d/archive_uri-https_download_docker_com_linux_ubuntu-groovy.list"
 
-- name: Update
+- name: Update Cache
   apt:
     update_cache: yes
-  ignore_errors: true
 
 - name: Install Docker
   apt:
     name: docker-ce, docker-ce-cli, containerd.io
     state: latest
-  ignore_errors: true
 
 - name: 'Adding the "{{ jumpbox_user }}" user to the docker group'
   user:

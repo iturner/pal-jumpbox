@@ -6,4 +6,6 @@
 
 - name: Install CloudFoundry UUA
   shell: "gem install cf-uaac"
+  args:
+    creates: "/usr/local/bin/uaac"
 ...
