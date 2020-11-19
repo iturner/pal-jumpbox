@@ -17,7 +17,7 @@
   roles:
     - jumpbox-setup
 
-#  post_tasks:
-#    - name: Reboot Server
-#      reboot:
+  post_tasks:
+    - name: Reboot Server
+      reboot:
 ...
