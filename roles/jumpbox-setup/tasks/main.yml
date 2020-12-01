@@ -4,6 +4,9 @@
     msg: "Use Ubuntu for jumpbox setup."
   when: ansible_os_family == "Ubuntu"
 
+- name: Install LastPass CLI
+  include_tasks: install-lastpass-cli.yml
+
 - name: Create .vimrc File
   include_tasks: setup-vim.yml
 
